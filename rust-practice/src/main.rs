@@ -24,3 +24,31 @@ fn rockstar() {
     let thirdItem = awesomeList[2];
     println!("awesomelist item 3 is {thirdItem}");
 }
+
+fn super()
+{
+io::stdin()
+    .read_line(&mut input)
+    .expect("Failed to read line");
+if input.trim() == option1 {
+    display_news().await;
+} else if input.trim() == option2 {
+    display_active_planets().await;
+} else if input.trim() == option3 {
+    println!("AHHHHHHHHHH");
+} else if input.trim() == option4 {
+    quit = true;
+} else {
+    println!("You must be facsist! To prove you're not, try again.")
+}
+
+input = input.trim();
+match input
+{
+    "1" => {display_news().await;}
+    "2" => {display_active_planets().await;}
+    "3" => {println!("Ahhhhhhh");}
+    "4" => {quit = false;}
+}
+}
+        

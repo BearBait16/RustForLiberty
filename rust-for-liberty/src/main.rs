@@ -20,21 +20,16 @@ async fn main() {
         println!("  2. Review active Planets and their status in the fight for liberty");
         println!("  3. Enjoy a cup of Liber-Tea");
         println!("  4. Quit");
-
         let mut input = String::new();
         io::stdin()
             .read_line(&mut input)
             .expect("Failed to read line");
-        if input.trim() == option1 {
-            display_news().await;
-        } else if input.trim() == option2 {
-            display_active_planets().await;
-        } else if input.trim() == option3 {
-            println!("AHHHHHHHHHH");
-        } else if input.trim() == option4 {
-            quit = true;
-        } else {
-            println!("You must be facsist! To prove you're not, try again.")
+        match input.as_str().trim() {
+            "1" => display_news().await,
+            "2" => display_active_planets().await,
+            "3" => println!("Ahhhhhhh"),
+            "4" => quit = true,
+            _ => println!("Invalid option, soldier!"),
         }
     }
 }
