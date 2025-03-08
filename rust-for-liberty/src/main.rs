@@ -54,10 +54,25 @@ async fn display_news() {
 }
 
 async fn display_active_planets() {
-    let active_planets = reqwest::get("https://helldiverstrainingmanual.com/api/v1/war/campaign")
+    println!("");
+    println!(
+        "Here are the active planets where liberty is being attacked! Choose these planets hero!"
+    );
+    let response = reqwest::get("https://helldiverstrainingmanual.com/api/v1/war/campaign")
         .await
-        .unwrap()
-        .text()
-        .await;
-    println!("{:?}", active_planets);
+        .expect("This info has also failed super earth");
+
+    let active_planets: Vec<serde_json::Value> = response.json().await.expect("Awh Crap");
+    let mut planet_name;
+    let mut reigning_faction;
+    println!("");
+    println!("");
+    for planet in &active_planets {
+        planet_name = planet["name"].as_str();
+        reigning_faction = planet["faction"].as_str();
+        println!("");
+        println!("");
+        println!("Active Planet Name: {:?}", planet_name);
+        println!("Reigning Faction: {:?}", reigning_faction);
+    }
 }
