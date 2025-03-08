@@ -1,14 +1,10 @@
 // Tutorial from https://blog.logrocket.com/making-http-requests-rust-reqwest/
 // additional Json parsing tutorial from https://reintech.io/blog/working-with-json-in-rust
 use reqwest;
+use serde_json;
 use std::io;
 #[tokio::main]
 async fn main() {
-    let option1 = String::from("1");
-    let option2 = String::from("2");
-    let option3 = String::from("3");
-    let option4 = String::from("4");
-
     let mut quit = false;
     while quit == false {
         println!(
@@ -35,13 +31,26 @@ async fn main() {
 }
 
 async fn display_news() {
-    let news: Result<String, reqwest::Error> =
-        reqwest::get("https://helldiverstrainingmanual.com/api/v1/war/news")
-            .await
-            .unwrap()
-            .text()
-            .await;
-    println!("{:#?}", news);
+    println!("");
+    println!("Messages recieved from Super Earth are as follows: ");
+    println!("");
+    println!("");
+
+    let response = reqwest::get("https://helldiverstrainingmanual.com/api/v1/war/news")
+        .await
+        .expect("The info has failed super earth");
+    let news: Vec<serde_json::Value> = response.json().await.expect("Awh Crap");
+
+    let mut id = 0;
+    let mut message;
+    for article in &news {
+        id += 1;
+        message = article["message"].as_str();
+        println!("Article id number: {:?}", id);
+        print!("Message: {:?}", message);
+        println!("");
+        println!("");
+    }
 }
 
 async fn display_active_planets() {
