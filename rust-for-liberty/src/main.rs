@@ -23,7 +23,7 @@ async fn main() {
         match input.as_str().trim() {
             "1" => display_news().await,
             "2" => display_active_planets().await,
-            "3" => println!("Ahhhhhhh"),
+            "3" => cup_of_liber_tea(),
             "4" => quit = true,
             _ => println!("Invalid option, soldier!"),
         }
@@ -75,4 +75,17 @@ async fn display_active_planets() {
         println!("Active Planet Name: {:?}", planet_name);
         println!("Reigning Faction: {:?}", reigning_faction);
     }
+}
+fn cup_of_liber_tea() {
+    println!("Uhhhh. I couldn't igure out how to run an mp3 in the terminal.");
+    println!("So, this is the closest thing I can get to singing it.");
+    println!("BAH BAH BAH BAH");
+    println!("BAH... BAH");
+    println!("BAH BAH BAH BAH");
+    println!("BAH.. BAH");
+    println!("");
+    println!("");
+    println!("Thank you");
+    println!("");
+    println!("");
 }
